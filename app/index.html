@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Notícias</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <section id='news'>
+        <script type="text/template" class="template">
+            <div class="news--featured">
+                <article>
+                    <a href="{{featured.url}}" class="article__url">
+                        <img src="{{featured.image}}" alt="{{featured.title}}" class="article__image">
+                        <h3 class="article__title">{{featured.title}}</h3>
+                    </a>
+                </article>
+            </div>
+            
+            <div class="news--latest">
+                <h2>Últimas notícias</h2>
+                {{#each news}}
+                <article>
+                    <a href="{{url}}" class="article__url">
+                        <span class="article__left-wrapper">
+                            <span class="article__hours">{{hours}}</span>
+                            <span class="article__date">{{date}}</span>
+                        </span>
+                        <span class="article__right-wrapper">
+                            <h3 class="article__title">{{title}}</h3>   
+                            <span class="article__subtitle">{{title}}</span>
+                        </span>
+                    </a>
+                </article>
+                {{/each}}
+            </div>
+        </script>
+    </section>
+
+    <script src="js/vendor/handlebars-v1.3.0.js"></script>
+    <script src="js/vendor/jquery-2.1.1.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
