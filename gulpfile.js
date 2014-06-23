@@ -6,10 +6,15 @@ var gulp = require('gulp');
 // load plugins
 var $ = require('gulp-load-plugins')();
 
-gulp.task('styles', function () {
-    return gulp.src('app/styles/main.css')
-        .pipe($.autoprefixer('last 1 version'))
-        .pipe(gulp.dest('.tmp/styles'))
+
+gulp.task('less', function () {   
+    var path = require('path');
+    return gulp.src(['app/less/reset.less', 'app/less/main.less'])
+        .pipe($.concat('bundle.css'))
+        .pipe($.less({
+            paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('./.tmp/styles'))
         .pipe($.size());
 });
 
@@ -20,7 +25,14 @@ gulp.task('scripts', function () {
         .pipe($.size());
 });
 
-gulp.task('html', ['styles', 'scripts'], function () {
+gulp.task('libs', function () {
+    return gulp.src('app/bower_components/**/*.js')
+        .pipe($.jshint())
+        .pipe($.jshint.reporter(require('jshint-stylish')))
+        .pipe($.size());
+});
+
+gulp.task('html', ['less', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
@@ -92,7 +104,7 @@ gulp.task('serve', ['connect'], function () {
 });
 
 // inject bower components
-gulp.task('wiredep', function () {
+gulp.task('bower', function () {
     var wiredep = require('wiredep').stream;
 
     gulp.src('app/*.html')
@@ -102,22 +114,21 @@ gulp.task('wiredep', function () {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('watch', ['connect', 'serve'], function () {
+gulp.task('watch', ['bower', 'connect', 'serve'], function () {
     var server = $.livereload();
 
     // watch for changes
 
     gulp.watch([
         'app/*.html',
-        '.tmp/styles/**/*.css',
+        '.tmp/less/**/*.less',
         'app/scripts/**/*.js',
         'app/images/**/*'
     ]).on('change', function (file) {
         server.changed(file.path);
     });
 
-    gulp.watch('app/styles/**/*.css', ['styles']);
+    gulp.watch('app/less/**/*.less', ['less']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
-    gulp.watch('bower.json', ['wiredep']);
 });
