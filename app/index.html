@@ -2,43 +2,54 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1">
     <title>Notícias</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet" href="styles/bundle.css">
 </head>
 <body>
-    <section id='news'>
-        <script type="text/template" class="template">
-            <div class="news--featured">
-                <article>
-                    <a href="{{featured.url}}" class="article__url">
-                        <img src="{{featured.image}}" alt="{{featured.title}}" class="article__image">
-                        <h3 class="article__title">{{featured.title}}</h3>
-                    </a>
-                </article>
-            </div>
-            
-            <div class="news--latest">
-                <h2>Últimas notícias</h2>
-                {{#each news}}
-                <article>
-                    <a href="{{url}}" class="article__url">
-                        <span class="article__left-wrapper">
-                            <span class="article__hours">{{hours}}</span>
-                            <span class="article__date">{{date}}</span>
-                        </span>
-                        <span class="article__right-wrapper">
-                            <h3 class="article__title">{{title}}</h3>   
-                            <span class="article__subtitle">{{title}}</span>
-                        </span>
-                    </a>
-                </article>
-                {{/each}}
-            </div>
-        </script>
-    </section>
-
-    <script src="js/vendor/handlebars-v1.3.0.js"></script>
-    <script src="js/vendor/jquery-2.1.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script id="tplFeatured" type="text/x-handlebars-template" class="template">
+        <div class="news--featured">
+            <article>
+                <a href="{{featured.url}}" class="article__url">
+                    <div class="border-img">
+                        <span class="border"><!-- --></span>
+                        <img src="{{featured.image}}" alt="{{featured.title}}" width="940" class="article__image">
+                    </div>
+                    <h1 class="article__title">{{featured.title}}</h1>
+                </a>
+            </article>
+        </div>
+    </script>
+    <script id="tplNews" type="text/x-handlebars-template" class="template">
+        <div class="news--latest">
+            <h2>
+            Últimas Notícias
+            <div class="fringe-separator"><!-- --></div>
+            </h2>
+            {{#each news}}
+            <article>
+                <a href="{{url}}" class="article__url">
+                    <span class="article__left-wrapper col-1">
+                        <span class="article__hours">{{hours}}</span>
+                        <span class="article__date">{{date}}</span>
+                    </span>
+                    <span class="article__right-wrapper col-11">
+                        <h3 class="article__title">{{title}}</h3>   
+                        <span class="article__subtitle">{{title}}</span>
+                    </span>
+                </a>
+            </article>
+            <hr>
+            {{/each}}
+        </div>
+    </script>
+    <section id="news" class="container"></div>
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/handlebars/handlebars.js"></script>
+    <!-- endbower -->
+    <script src="scripts/main.js"></script>
 </body>
 </html>
