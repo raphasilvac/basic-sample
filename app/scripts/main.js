@@ -58,10 +58,11 @@
 		},
 
 		getElement: function () {
-			return this.tpl(this.data); 
+			return this.tpl(this.data);
 		}
 	};
-
-	new News();
+	window.onload = function () {
+		new News();
+	}
 
 })(window, jQuery);

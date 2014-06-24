@@ -20,7 +20,7 @@ h1 {font-size: 34px;}
 h2 {font-size: 22px;}
 h3 {font-size: 16px;}
 
-a:hover {text-decoration: underline;}
+a:hover, a:hover * {text-decoration: underline;}
 
 [class*="col-"] {float:left; margin-left: (@grid-gutter*2);}
 
@@ -39,14 +39,15 @@ a:hover {text-decoration: underline;}
 .news--latest article {position: relative; margin-left: -(@grid-gutter*2); padding: 35px 0;}
 .news--latest hr:last-child {display: none;}
 .news--latest h2 {padding-bottom: 12px; border-bottom: solid 1px @separator-color; position: relative}
-.news--latest h2 .fringe-separator {position: absolute; bottom: 0;}
+.news--latest h2 .fringe-separator {position: absolute; bottom: 0; left: 0}
+.news--latest h3 {color: @primary-color;}
 .news--latest .article__left-wrapper  {margin-top: 5px;}
 .news--latest .article__right-wrapper {margin-left: 0; width: (@col-size*11)}
 .news--latest .article__subtitle {color: @secondary-color; display: block; margin-top: 4px;}
 .news--latest .article__url:before, .news--latest .article__url:after {content: " "; display: table;} 
 .news--latest .article__url:after {clear: both;} 
-.news--latest .article__hours {color: @template-color; font-size: 14px}
-.news--latest .article__date {text-transform: uppercase; font-size: 12px}
+.news--latest .article__hours {color: @template-color; font-size: 14px;}
+.news--latest .article__date {text-transform: uppercase; font-size: 12px; color: @primary-color;}
 .fringe-separator {background-color: @template-color; width: 50%; height: 4px;}
 
 hr {border:0; border-top: solid 1px @separator-color; display: block; margin: 0; padding: 0px}
