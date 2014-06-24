@@ -61,8 +61,7 @@
 			return this.tpl(this.data);
 		}
 	};
-	window.onload = function () {
-		new News();
-	}
+	
+	new News();
 
 })(window, jQuery);
