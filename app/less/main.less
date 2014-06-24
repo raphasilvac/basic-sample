@@ -4,14 +4,15 @@
 @secondary-color: #999999;
 @lighter-tone: #FFFFFF;
 @separator-color: #DDDDDD;
-@base-font-family: Arial;
+@base-font-family: arial, helvetica;
 @base-font-size: 13px;
 @grid-size: 960px;
+
 @grid-gutter: 10px;
 @col-size: 80px;
 
 /* mixins */
-.txt-shadow {text-shadow: 1px 1px 1px @primary-color;}
+.txt-shadow {text-shadow: 1px 1px @primary-color;}
 
 body {font-family: @base-font-family; font-size: @base-font-size; color: @primary-color; font-weight: bold;}
 h1, h2, h3 {font-weight: bold;}
@@ -29,9 +30,9 @@ a:hover {text-decoration: underline;}
 .container {width: (@grid-size - (@grid-gutter * 2)); margin: 29px auto; padding: 0 10px;}
 
 .news--featured {margin-bottom: 20px;}
-.news--featured .border-img span.border {position: absolute; height: 100%; width: 100%; display: none; border: solid 4px @template-color; box-sizing: border-box;}
+.news--featured .border-img span.border {position: absolute; height: 100%; width: 100%; display: none; border: solid 4px @template-color; box-sizing: border-box; -moz-box-sizing: border-box;}
 .news--featured .article__url {display: block; position: relative; margin-bottom: 20px;}
-.news--featured .article__url h1 {position: absolute; bottom: 0px; padding: 23px 36px; color: @lighter-tone; .txt-shadow;}
+.news--featured .article__url h1 {position: absolute; bottom: 0px; padding: 23px 36px; color: @lighter-tone;}
 
 .news--featured .article__url:hover .border-img span.border {display: block;}
 
