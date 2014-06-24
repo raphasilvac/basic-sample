@@ -19,6 +19,8 @@ h1 {font-size: 34px;}
 h2 {font-size: 22px;}
 h3 {font-size: 16px;}
 
+a:hover {text-decoration: underline;}
+
 [class*="col-"] {float:left; margin-left: (@grid-gutter*2);}
 
 .col-1 {width: (@col-size - (@grid-gutter*2))}
@@ -32,7 +34,6 @@ h3 {font-size: 16px;}
 
 .article__url:hover  .border-img span.border {display: block;}
 .article__url h1 {position: absolute; bottom: 0px; padding: 23px 36px; color: @lighter-tone; .txt-shadow;}
-.article__url:hover h1 {text-decoration: underline;}
 
 .news--latest article {position: relative; margin-left: -(@grid-gutter*2); padding: 35px 0;}
 .news--latest hr:last-child {display: none;}
@@ -43,8 +44,8 @@ h3 {font-size: 16px;}
 .news--latest .article__url:before, .news--latest .article__url:after {content: " "; display: table;} 
 .news--latest .article__url:after {clear: both;} 
 .news--latest .article__left-wrapper  {margin-top: 5px;}
-.news--latest .article__hours {color: @template-color;}
-.news--latest .article__date {text-transform: uppercase;}
+.news--latest .article__hours {color: @template-color; font-size: 14px}
+.news--latest .article__date {text-transform: uppercase; font-size: 12px}
 .fringe-separator {background-color: @template-color; width: 50%; height: 4px;}
 
 hr {border:0; border-top: solid 1px @separator-color; display: block; margin: 0; padding: 0px}
