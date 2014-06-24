@@ -12,5 +12,4 @@
 ```sh
 	gulp watch	// Starts a web server
 	gulp		// For building
-	gulp clean	// For clear clean
 ```
