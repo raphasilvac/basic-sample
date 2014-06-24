@@ -114,14 +114,13 @@ gulp.task('bower', function () {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('watch', ['bower', 'connect', 'serve'], function () {
+gulp.task('watch', ['bower', 'less', 'connect', 'serve'], function () {
     var server = $.livereload();
-
     // watch for changes
 
     gulp.watch([
         'app/*.html',
-        '.tmp/less/**/*.less',
+        '.tmp/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/images/**/*'
     ]).on('change', function (file) {
@@ -131,4 +130,5 @@ gulp.task('watch', ['bower', 'connect', 'serve'], function () {
     gulp.watch('app/less/**/*.less', ['less']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
+
 });
