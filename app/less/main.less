@@ -4,14 +4,15 @@
 @secondary-color: #999999;
 @lighter-tone: #FFFFFF;
 @separator-color: #DDDDDD;
-@base-font-family: Arial;
+@base-font-family: arial, helvetica;
 @base-font-size: 13px;
 @grid-size: 960px;
+
 @grid-gutter: 10px;
 @col-size: 80px;
 
 /* mixins */
-.txt-shadow {text-shadow: 1px 1px 1px @primary-color;}
+.txt-shadow {text-shadow: 1px 1px @primary-color;}
 
 body {font-family: @base-font-family; font-size: @base-font-size; color: @primary-color; font-weight: bold;}
 h1, h2, h3 {font-weight: bold;}
@@ -19,7 +20,7 @@ h1 {font-size: 34px;}
 h2 {font-size: 22px;}
 h3 {font-size: 16px;}
 
-a:hover {text-decoration: underline;}
+a:hover, a:hover * {text-decoration: underline;}
 
 [class*="col-"] {float:left; margin-left: (@grid-gutter*2);}
 
@@ -29,23 +30,24 @@ a:hover {text-decoration: underline;}
 .container {width: (@grid-size - (@grid-gutter * 2)); margin: 29px auto; padding: 0 10px;}
 
 .news--featured {margin-bottom: 20px;}
-.news--featured .border-img span.border {position: absolute; height: 100%; width: 100%; display: none; border: solid 4px @template-color; box-sizing: border-box;}
+.news--featured .border-img span.border {position: absolute; height: 100%; width: 100%; display: none; border: solid 4px @template-color; box-sizing: border-box; -moz-box-sizing: border-box;}
 .news--featured .article__url {display: block; position: relative; margin-bottom: 20px;}
-.news--featured .article__url h1 {position: absolute; bottom: 0px; padding: 23px 36px; color: @lighter-tone; .txt-shadow;}
+.news--featured .article__url h1 {position: absolute; bottom: 0px; padding: 23px 36px; color: @lighter-tone;}
 
 .news--featured .article__url:hover .border-img span.border {display: block;}
 
 .news--latest article {position: relative; margin-left: -(@grid-gutter*2); padding: 35px 0;}
 .news--latest hr:last-child {display: none;}
 .news--latest h2 {padding-bottom: 12px; border-bottom: solid 1px @separator-color; position: relative}
-.news--latest h2 .fringe-separator {position: absolute; bottom: 0;}
+.news--latest h2 .fringe-separator {position: absolute; bottom: 0; left: 0;}
+.news--latest h3 {color: @primary-color;}
 .news--latest .article__left-wrapper  {margin-top: 5px;}
 .news--latest .article__right-wrapper {margin-left: 0; width: (@col-size*11)}
 .news--latest .article__subtitle {color: @secondary-color; display: block; margin-top: 4px;}
 .news--latest .article__url:before, .news--latest .article__url:after {content: " "; display: table;} 
 .news--latest .article__url:after {clear: both;} 
-.news--latest .article__hours {color: @template-color; font-size: 14px}
-.news--latest .article__date {text-transform: uppercase; font-size: 12px}
+.news--latest .article__hours {color: @template-color; font-size: 14px;}
+.news--latest .article__date {text-transform: uppercase; font-size: 12px; color: @primary-color;}
 .fringe-separator {background-color: @template-color; width: 50%; height: 4px;}
 
 hr {border:0; border-top: solid 1px @separator-color; display: block; margin: 0; padding: 0px}

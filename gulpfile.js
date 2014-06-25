@@ -2,7 +2,8 @@
 // generated on 2014-06-18 using generator-gulp-webapp 0.1.0
 
 var gulp = require('gulp');
-
+var debug = false;
+var gutil = require('gulp-util');
 // load plugins
 var $ = require('gulp-load-plugins')();
 
@@ -22,6 +23,8 @@ gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
         .pipe($.jshint())
         .pipe($.jshint.reporter(require('jshint-stylish')))
+        .pipe($.concat('bundle.js'))
+        .pipe(gulp.dest('./.tmp/scripts'))
         .pipe($.size());
 });
 
@@ -33,19 +36,27 @@ gulp.task('libs', function () {
 });
 
 gulp.task('html', ['less', 'scripts'], function () {
-    var jsFilter = $.filter('**/*.js');
-    var cssFilter = $.filter('**/*.css');
+    
+    gulp.src(['app/bower_components/jquery/dist/jquery.min.js', 'app/bower_components/handlebars/handlebars.min.js'])
+        .pipe($.concat('libs.js'))
+        .pipe(gulp.dest('dist/scripts'))
+        .pipe($.size());
 
-    return gulp.src('app/*.html')
-        .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
-        .pipe(jsFilter)
+    gulp.src('app/scripts/**/*.js')
         .pipe($.uglify())
-        .pipe(jsFilter.restore())
-        .pipe(cssFilter)
+        .pipe($.concat('bundle.js'))
+        .pipe(gulp.dest('dist/scripts'))
+        .pipe($.size());
+
+    gulp.src('.tmp/styles/**/*.css')
         .pipe($.csso())
-        .pipe(cssFilter.restore())
-        .pipe($.useref.restore())
-        .pipe($.useref())
+        .pipe(gulp.dest('dist/styles'))
+        .pipe($.size());
+
+    return gulp.src('app/index.html')
+        .pipe($.htmlReplace({
+            'js': 'scripts/libs.js'
+        }))
         .pipe(gulp.dest('dist'))
         .pipe($.size());
 });
@@ -114,14 +125,13 @@ gulp.task('bower', function () {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('watch', ['bower', 'connect', 'serve'], function () {
+gulp.task('watch', ['bower', 'less', 'scripts', 'connect', 'serve'], function () {
     var server = $.livereload();
-
     // watch for changes
 
     gulp.watch([
         'app/*.html',
-        '.tmp/less/**/*.less',
+        '.tmp/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/images/**/*'
     ]).on('change', function (file) {
@@ -131,4 +141,5 @@ gulp.task('watch', ['bower', 'connect', 'serve'], function () {
     gulp.watch('app/less/**/*.less', ['less']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
+
 });

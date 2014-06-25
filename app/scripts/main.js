@@ -1,6 +1,6 @@
 'use strict';
 
-(function (window) {
+(function (window, $) {
 	// News Page Class
 	var News = function (api) {
 		this.init(api);
@@ -36,7 +36,7 @@
 			this.append(widget.getElement());
 		},
 
-		populateNews: function (data) {
+		populateNews: function () {
 			var widget = new HbsWidget('#tplNews', this.data); 
 			this.append(widget.getElement());
 		},
@@ -58,10 +58,10 @@
 		},
 
 		getElement: function () {
-			return this.tpl(this.data); 
+			return this.tpl(this.data);
 		}
 	};
+	
+	new News();
 
-	var page = new News();
-
-})(window);
+})(window, jQuery);
